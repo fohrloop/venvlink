@@ -124,13 +124,12 @@ class VenvLink:
         # Make hard links to needed files
         venvdir_src = self.venv_folder / project_name
 
-        files_and_funcs = (
+        files_and_funcs = [
             ('pyvenv.cfg', get_from_venv_dir),
-            ('activate', get_from_scripts_dir),
-            ('activate.bat', get_from_scripts_dir),
-            ('deactivate.bat', get_from_scripts_dir),
-            ('Activate.ps1', get_from_scripts_dir),
-            )
+        ]
+        for file in get_scripts_dir(venvdir_src).glob('*'):
+            if file.is_file():
+                files_and_funcs.append((file.name, get_from_scripts_dir))
 
         for file, func in files_and_funcs:
             file_src = func(venvdir_src, file)
