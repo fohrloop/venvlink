@@ -3,6 +3,7 @@ logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                     datefmt='%m-%d %H:%M')
 
+from functools import partial 
 import os 
 from pathlib import Path
 import subprocess
@@ -11,8 +12,8 @@ import shutil
 
 from venvlink.__version__ import __version__
 from venvlink.config import Configuration
-
-
+from venvlink.exceptions import UserAborted
+from venvlink.utils import is_in_accepted_values, get_input
 
 logger = logging.getLogger(__name__)
 
@@ -83,8 +84,18 @@ class VenvLink:
             The --system_site_packages of "python -m venv"
         """
 
-        # Create the virtual environment in the "centralized location"
-        self._create_venv_to_venv_folder(project_name, system_site_packages=system_site_packages)
+        try:
+            self._check_no_venv_in_workdir(workdir, project_name)
+        except UserAborted:
+            print('Canceled.')
+            return 
+
+        try:
+            # Create the virtual environment in the "centralized location"
+            self._create_venv_to_venv_folder(project_name, system_site_packages=system_site_packages)
+        except UserAborted:
+            print('Canceled.')
+            return 
 
         # Create the virtual environment in the workdir, with hardlinks
         self._create_venv_to_workdir(workdir, project_name)
@@ -95,20 +106,92 @@ class VenvLink:
         # Create the folder for all the virtual environments
         self.venv_folder.mkdir(exist_ok=True, parents=True)
 
-        self._check_that_venv_does_not_exist(project_name)
+        ret = self._check_that_venv_does_not_exist(project_name)
+
+        if ret == 'skipcreate':
+            return 
+        if ret == 'newname':
+            project_name = self._get_new_venv_name()
+
         subprocess_cmd = [sys.executable, '-m', 'venv', project_name]
         if system_site_packages:
             subprocess_cmd.append('--system-site-packages')
         logger.info('Running: %s with cwd=%s', subprocess_cmd, self.venv_folder)
         subprocess.run(subprocess_cmd, cwd=self.venv_folder)
 
+    def __venv_exists(self, project_name):
+        return (self.venv_folder / project_name).exists()
+
     def _check_that_venv_does_not_exist(self, project_name):
+        """
+        Returns
+        ret: str
+            'continue' 'skipcreate' or 'newname'
+        """
+        if not self.__venv_exists(project_name):
+            return 'continue'
 
-        if not (self.venv_folder / project_name).exists():
-            return # all ok.
+        return self._when_venv_exists_already(project_name)
 
-        raise NotImplementedError('You can not make two projects to use the same venv (yet)')
+    def _get_new_venv_name(self):
 
+        prompt =  'Give a new projectname: '
+        errortxt = 'Sorry, that projectname exists already. '
+        return get_input(prompt, validator=lambda x: not self.__venv_exists(x), on_validationerror=errortxt)
+
+    def _when_venv_exists_already(self, project_name):
+        """
+        When venv already exists with the project_name, ask
+        user opinion.
+
+        Returns
+        -------
+        ret: str
+            'skipcreate' or 'newname'
+
+        Raises
+        ------
+        UserAborted, if user aborted.
+
+        """
+        text = f'The virtual environment for a projectname "{project_name}" exists already. '
+        text += f'If you use the name "{project_name}", you will SHARE the virtual environment '
+        text += 'with the other project(s) using the same name.' + os.linesep
+        text += 'Continue?' + os.linesep
+        print(text)
+
+        prompt =  '[Y] Yes [N] No, give new name. [A] Abort: '
+        validator = partial(is_in_accepted_values, accepted_values={'Y', 'N', 'A'})
+        value = get_input(prompt, validator).upper()
+
+        if value == 'Y':
+            return 'skipcreate'
+        elif value == 'N':
+            return 'newname'
+        elif value == 'A':
+            raise UserAborted()
+    
+
+    def _check_no_venv_in_workdir(self, workdir, project_name, venvname='venv'):
+            
+        venvdir_dst = workdir / venvname
+        if venvdir_dst.exists():
+            print(f'The {venvdir_dst} exists already!')
+            print('Do you want to remove it?')
+
+            prompt =  '[Y] Yes [A] Abort: '
+            validator = partial(is_in_accepted_values, accepted_values={'Y', 'A'})
+            value = get_input(prompt, validator).upper()
+            
+            if value == 'A':
+                raise UserAborted()
+            elif value == 'Y':
+                print('Removing ', str(venvdir_dst))
+                shutil.rmtree(venvdir_dst)
+            else: # should not ever happen.
+                ValueError()
+
+        return True 
 
     def _create_venv_to_workdir(self, workdir, project_name, venvname='venv'):
         # Create the working directory if it does not
@@ -116,8 +199,6 @@ class VenvLink:
         workdir.mkdir(exist_ok=True, parents=True)
         
         venvdir_dst = workdir / venvname
-        if venvdir_dst.exists():
-            raise Exception(f'The {venvdir_dst} exists already! Remove it and try again!')
 
         venvdir_dst.mkdir()
         

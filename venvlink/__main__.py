@@ -23,8 +23,8 @@ if __name__ == '__main__':
     vlink = VenvLink()
 
     if not args.delete:
-        print(f'Creating venv for "{args.project_name}"')
-        vlink.create_venv(args.project_name, workdir=Path(os.getcwd()), system_site_packages = args.system_site_packages)
+        print(f'Creating venv for "{args.projectname}"')
+        vlink.create_venv(args.projectname, workdir=Path(os.getcwd()), system_site_packages = args.system_site_packages)
     else:
-        print(f'Deleting venv for "{args.project_name}"')
-        vlink.delete_env(args.project_name)
+        print(f'Deleting venv for "{args.projectname}"')
+        vlink.delete_env(args.projectname)
