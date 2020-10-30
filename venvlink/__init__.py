@@ -79,7 +79,6 @@ class VenvLink:
         workdir: pathlib.Path
             The working directory; the directory into 
             which the "linked virtual environment" is created
-            (with hardlinked Scripts/activate).
         system_site_packages: bool
             The --system_site_packages of "python -m venv"
         """
@@ -97,7 +96,7 @@ class VenvLink:
             print('Canceled.')
             return 
 
-        # Create the virtual environment in the workdir, with hardlinks
+        # Create the "proxied" virtual environment in the workdir
         self._create_venv_to_workdir(workdir, project_name)
 
 
@@ -202,30 +201,21 @@ class VenvLink:
 
         venvdir_dst.mkdir()
         
-        # Make hard links to needed files
+        # Make proxies to needed files
         venvdir_src = self.venv_folder / project_name
 
-        files_and_funcs = [
-            ('pyvenv.cfg', get_from_venv_dir),
-        ]
-        for file in get_scripts_dir(venvdir_src).glob('*'):
-            if file.is_file():
-                files_and_funcs.append((file.name, get_from_scripts_dir))
+        
+        contents = (   
+            ( 'Scripts' + os.path.sep  + 'Activate.ps1', f"""Write-Output 'venvlink: Activating virtual env in "{venvdir_src}"'
+                & \"{venvdir_src / 'Scripts' /'Activate.ps1' }\""""),
+        )
 
-        for file, func in files_and_funcs:
-            file_src = func(venvdir_src, file)
-            file_dst = func(venvdir_dst, file)
+        for file, content in contents:
+            file_dst = venvdir_dst / file
             file_dst.parent.mkdir(exist_ok=True, parents=True)
-            """
-            Compability of os.link:
+            with open(file_dst, 'w', encoding='utf-8') as f:
+                print(content, file=f)
 
-            Changed in version 3.2: Added Windows support.
-            New in version 3.3: Added the src_dir_fd, dst_dir_fd, and follow_symlinks arguments.
-            Changed in version 3.6: Accepts a path-like object for src and dst.
-            """
-            # Creates a hard link from src to dst
-
-            os.link(file_src, file_dst)
 
         with open(venvdir_dst / 'venvlink', 'w') as f:
             print(get_venvlink_text(venvdir_src), file=f)

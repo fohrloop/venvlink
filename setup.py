@@ -11,7 +11,7 @@ def find_version():
 
 setuptools.setup(
     name='venvlink',
-    description='Virtual environments with hard links.',
+    description='Virtual environments centralized with activate proxy in your working dir.',
     version=find_version(),
     author='Niko Pasanen',
     author_email='niko@pasanen.me',

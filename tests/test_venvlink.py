@@ -38,13 +38,11 @@ def test_vlink():
     assert new_venv_dir.exists()
     assert venv_project.exists()
 
-    activate_src = venv_project / 'Scripts' / 'activate.bat'
-    activate_dst = new_venv_dir / 'Scripts' / 'activate.bat'
+    activate_src = venv_project / 'Scripts' / 'Activate.ps1'
+    activate_dst = new_venv_dir / 'Scripts' / 'Activate.ps1'
 
     assert activate_src.exists()
     assert activate_dst.exists()
-    # Test that the new file really is a hard link
-    assert os.path.samefile(activate_src, activate_dst)
 
 
     vlink.delete_env("testing")

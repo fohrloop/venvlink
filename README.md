@@ -3,7 +3,7 @@
 
 # 🔗 venvlink
 
-Create virtual environments in one centralized folder, and have `venv/Scripts/activate` still in your working folder (as hard links)!
+Create virtual environments in one centralized folder, and proxy of `venv/Scripts/activate` still in your working folder!
 
 # Installing
 ```
@@ -38,7 +38,7 @@ This would create the following folders:
 
 ```
 C:\workdir\someproject\venv
-   ^-- This has only few hardlinked files, such as the "activate" script.
+   ^-- This has only few files, such as the "activate" script.
 
 C:\<venvlink-venv-path>\project-name
    ^--- The actual virtual environment files are here!
