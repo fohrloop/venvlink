@@ -8,7 +8,7 @@ def find_version():
     except:
         raise RuntimeError("Could not find version string")
 
-with open('docs/README.md', encoding='utf-8') as f:
+with open('README.md', encoding='utf-8') as f:
     long_description = f.read()  
 
 setuptools.setup(
