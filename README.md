@@ -115,7 +115,7 @@ using `venvlink` one would type
 PS C:\workdir\someproject> python -m venvlink project-name
 ```
 
-This would create the following folders & files. Inside your project directory, a `venv` folder with only few files, such as the `activate` script.:
+This would create, inside your project directory, a `venv` folder with only few files (<1Kb in total), such as the `activate` script.:
 
 
 ```
@@ -127,7 +127,7 @@ venv
 └── venvlink
 ```
 
-and inside your `venv_folder` (located elsewhere), the actual virtual environment files:
+and inside your `venv_folder` (located elsewhere), the actual virtual environment files (can be up to hundreds of Mb, and thousands of files):
 
 ```
 project-name/
@@ -145,13 +145,13 @@ project-name/
 
 To activate the virtual environment  `(project-name)`, you would call
 
-```
+```shell
 PS C:\workdir\someproject> .\venv\Scripts\activate
 ```
 
 which would then call transparently*
 
-```
+```shell
 C:\Python\venvs\project-name\Scripts\activate
 ```
 and result you having that virtual environment activated, as:
