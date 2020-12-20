@@ -4,8 +4,9 @@ from pathlib import Path
 
 from venvlink import VenvLink
 from venvlink.config import init_config
+from venvlink.__version__ import __version__
 
-parser = argparse.ArgumentParser(prog="venvlink", description="venvlink")
+parser = argparse.ArgumentParser(prog="venvlink", description=f"venvlink {__version__}")
 
 parser.add_argument(
     "--init",
