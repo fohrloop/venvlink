@@ -105,13 +105,13 @@ C:\workdir\someproject\
 ```
 and you would like to create virtual environment for that folder. 
 Instead of the regular
-```python
+```shell
 PS C:\workdir\someproject> python -m venv venv
 ```
 
 using `venvlink` one would type
 
-```python
+```shell
 PS C:\workdir\someproject> python -m venvlink project-name
 ```
 
