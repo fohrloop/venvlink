@@ -228,7 +228,8 @@ class VenvLink:
                     f"""echo venvlink: Activating virtual env in \"{venvdir_src}\"\n"""
                     f"""call \"{real_activate_bat}\""""
                 ),
-            ),
+            ),  # Dummy file which makes possible to run simply "venv\Scripts\activate"
+            ("Scripts" + os.path.sep + "activate", ""),
         )
 
         for file, content in files_and_contents:
