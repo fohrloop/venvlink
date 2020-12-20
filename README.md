@@ -61,7 +61,7 @@ Therefore, you can use `venvlink` on `Python 3.6.4 32-bit` and `Python 3.9.2 64-
 <path_to_another_python_exe> -m pip install venvlink
 ```
 
-and the rest you can use normally. Note that virtual environments in the centralized folder will have the same python version which was used to create the virtual environment in the first place. **Note**: Knowing which python version is used in which virtual environment in rensibilities of the user (use wise venv names, if needed).
+and the rest you can use normally. Note that virtual environments in the centralized folder will have the same python version which was used to create the virtual environment in the first place. **Note**: Knowing which python version is used in which virtual environment in reponsibilities of the user (use wise venv names, if needed).
 
 
 
