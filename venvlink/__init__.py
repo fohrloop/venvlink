@@ -186,8 +186,10 @@ class VenvLink:
 
         venvdir_dst = workdir / venvname
         if venvdir_dst.exists():
-            print(f'The "{venvdir_dst}" exists already!')
-            print("Do you want to remove it?")
+            print(f'The activate proxy inside "{venvdir_dst}" exists already!')
+            print(
+                "Do you want to remove it? (This will remove just the link, not the virtual environment it is linked to)"
+            )
 
             prompt = "[Y] Yes [A] Abort: "
             validator = partial(is_in_accepted_values, accepted_values={"Y", "A"})
