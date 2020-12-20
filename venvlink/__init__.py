@@ -113,7 +113,7 @@ class VenvLink:
         ret = self._check_that_venv_does_not_exist(project_name)
 
         if ret == "skipcreate":
-            return
+            return project_name
         if ret == "newname":
             project_name = self._get_new_venv_name()
 
