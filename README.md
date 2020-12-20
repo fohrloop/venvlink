@@ -96,7 +96,7 @@ python -m venvlink --init
 
 
 
-## ✨ Creating virtual environment
+## ✨ Creating a virtual environment
 
 Assume that you have a project at 
 
@@ -115,17 +115,54 @@ using `venvlink` one would type
 PS C:\workdir\someproject> python -m venvlink project-name
 ```
 
-This would create the following folders & files:
+This would create the following folders & files. Inside your project directory, a `venv` folder with only few files, such as the `activate` script.:
+
 
 ```
-C:\workdir\someproject\venv
-   ^-- This has only few files, such as the "activate" script.
-
-C:\<venvlink-venv-path>\project-name
-   ^--- The actual virtual environment files are here!
+venv
+├── Scripts
+│   ├── Activate.ps1
+│   ├── activate
+│   └── activate.bat
+└── venvlink
 ```
 
-The first folder is for using the virtual environment normally, just like you have used to (running `.\venv\Scripts\activate`) and the second folder is for storing the actual virtual environment files.
+and inside your `venv_folder` (located elsewhere), the actual virtual environment files:
+
+```
+project-name/
+├── Include
+├── Lib
+│   └── site-packages
+├── Scripts
+│   ├── Activate.ps1
+│   ├── activate
+│   ├── activate.bat
+│   └── deactivate.bat
+├── pyvenv.cfg
+└── share
+```
+
+To activate the virtual environment  `(project-name)`, you would call
+
+```
+PS C:\workdir\someproject> .\venv\Scripts\activate
+```
+
+which would then call transparently*
+
+```
+C:\Python\venvs\project-name\Scripts\activate
+```
+and result you having that virtual environment activated, as:
+
+```
+(project-name) PS C:\workdir\someproject> 
+```
+
+[*] assuming that you have defined the `venv_folder` to be `C:\Python\venvs\` in the `.venvlinkrc`.
+
+
 
 ## 📖❔ Getting help
 You can use  the `-h` flag:
