@@ -61,12 +61,21 @@ def init_config():
         text = f"WARNING: The configuration file '{file}' for venvlink exists already. "
         text += f"If you continue, the existing file will be OVERRIDDEN "
         text += "with the default configuration file " + os.linesep
-        text += "Continue?" + os.linesep
         print(text)
+        question = "Override current configuration file with a new one?"
 
-        prompt = "[Y] Yes [N] No "
-        validator = partial(is_in_accepted_values, accepted_values={"Y", "N"})
-        value = get_input(prompt, validator).upper()
+        value = None
+        while value not in {"Y", "N"}:
+            print(question)
+            prompt = "[Y] Yes [N] No [S] Show current .venlinkrc\n"
+            validator = partial(is_in_accepted_values, accepted_values={"Y", "N", "S"})
+            value = get_input(prompt, validator).upper()
+            if value == "S":
+                print(f"\nCurrent configuration ({file}):")
+                print("-" * 28)
+                with open(file) as f:
+                    print(f.read())
+
         if value == "N":
             print("Canceled.")
             return
