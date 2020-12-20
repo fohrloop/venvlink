@@ -212,16 +212,14 @@ class VenvLink:
 
         real_activate_ps1 = venvdir_src / "Scripts" / "Activate.ps1"
         real_activate_bat = venvdir_src / "Scripts" / "activate.bat"
-        # The [ and ] need to be escaped with double backticks.
-        real_activate_ps1 = (
-            str(real_activate_ps1).replace("[", "``[").replace("]", "``]")
-        )
 
         files_and_contents = (
             (
                 "Scripts" + os.path.sep + "Activate.ps1",
-                f"""Write-Output 'venvlink: Activating virtual env in "{venvdir_src}"'
-                & \"{real_activate_ps1}\"""",
+                (
+                    f"""Write-Output 'venvlink: Activating virtual env in "{venvdir_src}"'\n"""
+                    f"& '{real_activate_ps1}'"
+                ),
             ),
             (
                 "Scripts" + os.path.sep + "activate.bat",
