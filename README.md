@@ -3,7 +3,7 @@
 # 🔗 venvlink
 
 
-The aim of `venvlink` is simply to create the virtual environment outside of the project folder, but *feel like* `python -m venv venv`. 
+The aim of `venvlink` is simply to create the virtual environment outside of the project folder, to a centralized location, but *feel like* you would be using  `python -m venv venv` and `./venv/Scripts/activate`. 
 
 ## Without venvlink
 This is how work with virtual environments looks like with `python -m venv venv`:
@@ -12,7 +12,6 @@ This is how work with virtual environments looks like with `python -m venv venv`
 ## With venvlink
 With `venvlink` the virtual environment is created in a centralized folder, and only a proxy ("link") of the `activate` script is created to the project folder:
 ![](docs/with-venvlink.png)
-
 
 ## Motivation
 The reason for one using venvlink might be one or multiple from below.
@@ -63,7 +62,13 @@ Therefore, you can use `venvlink` on `Python 3.6.4 32-bit` and `Python 3.9.2 64-
 
 and the rest you can use normally. Note that virtual environments in the centralized folder will have the same python version which was used to create the virtual environment in the first place. **Note**: Knowing which python version is used in which virtual environment in reponsibilities of the user (use wise venv names, if needed).
 
+### 🚫🔮 no magic
 
+`venvlink` is a really simple tool. All it does is
+- Runs `python -m venv projname`, inside the centralized venv folder
+- Creates `activate` scripts inside your project dir, that act as proxies ("links") for the real activate scripts.
+
+In addition there are some convenience scripts, for removing a venv or overwriting a proxy activate script. But that's about it. 
 
 # Installing
 ### Requirements
@@ -77,13 +82,9 @@ pip install venvlink
 
 
 
-# Usage
+# Getting started
 
-## 📖❔ Getting help
-You can use  the `-h` flag:
-```
-python -m venvlink -h
-```
+
 
 ## 🛠️ Initializing configure file
 
@@ -129,7 +130,27 @@ C:\<venvlink-venv-path>\project-name
 
 The first folder is for using the virtual environment normally, just like you have used to (running `venv/Scripts/activate`) and the second folder is for storing the actual virtual environment files.
 
-### 🗑️ Removing virtual environments
+## 📖❔ Getting help
+You can use  the `-h` flag:
+```
+PS C:\somepath\project> python -m venvlink -h
+
+usage: venvlink [-h] [--init] [-d] [-S] [projectname]
+
+venvlink 0.3.1
+
+positional arguments:
+  projectname
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --init                Initiate the venvlink configuration file (.venvlinkrc)
+  -d, --delete          Delete the virtual environment associated with project_name (instead of creating)
+  -S, --system-site-packages
+                        Give the virtual environment access to the system site-packages dir.
+```
+
+## 🗑️ Removing virtual environments
 If you want to fully remove a virtual environment and all its contents, you can either run
 ```
 python -m venvlink -d <venv_to_be_removed>
@@ -144,24 +165,7 @@ python -m venvlink anothervenv
 
 All what this does is recreates the proxy and, if anothervenv does not exist, creates anothervenv.
   
-## ⌨️ CLI
 
-You can find the command line help with `python -m venvlink -h`:
-```
-usage: venvlink [-h] [--init] [-d] [-S] [projectname]
-
-venvlink
-
-positional arguments:
-  projectname
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --init                Initiate the venvlink configuration file (.venvlinkrc)
-  -d, --delete          Delete the virtual environment associated with project_name (instead of creating)
-  -S, --system-site-packages
-                        Give the virtual environment access to the system site-packages dir.
-```
 
 ## 🛠️ Configuration
 ### Location of `.venvlinkrc`
@@ -185,16 +189,16 @@ This is the folder where all the virtual environment are stored, in subfolders.
 
 ### 🔍❕ Special cases
 
-Moving your virtual environment to centralized place means that you'll might have to tell for example to `pylint` where to venv is located, to prevent false positive `import-error`s. See: [Usage with linters (e.g. pylint)](docs/usage.md).
+Moving your virtual environment to centralized place means that you'll might have to tell to some tools where you have located your virtual environments. One example is  `pylint`, which needs to kown where the project venv is located, to prevent false positive `import-error`s. See: [Usage with linters (e.g. pylint)](docs/usage.md).
 
 ### 💡📁 File structure tip
 Following file structure has found to be useful:
 ```
-C:\Python\Python365\
-C:\Python\Python386\
-C:\Python\Python386-32\
-C:\Python\Python392\
-C:\Python\venvs\ 
+C:\Python\Python365\          # python installation
+C:\Python\Python386\          # python installation
+C:\Python\Python386-32\       # python installation
+C:\Python\Python392\          # python installation
+C:\Python\venvs\              # virtual environments
 ```
 since it is easy to find `python.exe` behind for creating a venv
 
