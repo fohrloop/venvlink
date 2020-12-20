@@ -27,14 +27,14 @@ If you want to reuse some of your virtual environments in multiple projects (sha
 ### 🏗️✔️relocating projects
 If you want to be able to relocate projects on hard disk (on same machine) by just copy-pasting them, even with virtual environments. 
 
-### 🔑🎯 activating like you've always done
+### 🔑🎯 centralized, but with an `activate` script
 
-If you want to have centralized virtual environments, but would still want to activate them as you have always done: with
+If you want to have centralized virtual environments, but would want to activate them, without having to remember the name of the virtual environment, just by running 
 
 ```
 ./venv/Scripts/activate
 ```
-The `activate` script in your project folder is just a proxy ("link") for the real `activate` script located elsewhere. There is *no need to remember the name* of the virtual environment as with some other virtual environment management tools.
+The `activate` script in your project folder is just a proxy ("link") for the real `activate` script located elsewhere.
 
 
 
