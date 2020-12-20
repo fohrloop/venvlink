@@ -38,10 +38,10 @@ def create_venv(args):
             f'The positional argument "projectname" is required for creating a virtual environment!'
         )
         return
-    print(f'Creating venv for "{args.projectname}"')
+    print(f'Creating venv for "{args.projectname.strip()}"')
     vlink = VenvLink()
     vlink.create_venv(
-        args.projectname,
+        args.projectname.strip(),
         workdir=Path(os.getcwd()),
         system_site_packages=args.system_site_packages,
     )
@@ -53,9 +53,9 @@ def delete_env(args):
             f'The positional argument "projectname" is required for deleting a virtual environment!'
         )
     else:
-        print(f'Deleting venv for "{args.projectname}"')
+        print(f'Deleting venv for "{args.projectname.strip()}"')
         vlink = VenvLink()
-        vlink.delete_env(args.projectname)
+        vlink.delete_env(args.projectname.strip())
 
 
 # Executed with "python -m venvlink [params]"
