@@ -94,7 +94,8 @@ class VenvLink:
 
         try:
             # Create the virtual environment in the "centralized location"
-            self._create_venv_to_venv_folder(
+            # Note: project_name may change
+            project_name = self._create_venv_to_venv_folder(
                 project_name, system_site_packages=system_site_packages
             )
         except UserAborted:
@@ -119,8 +120,11 @@ class VenvLink:
         subprocess_cmd = [sys.executable, "-m", "venv", project_name]
         if system_site_packages:
             subprocess_cmd.append("--system-site-packages")
-        logger.info("Running: %s with cwd=%s", subprocess_cmd, self.venv_folder)
+        logger.info(
+            'Running: "%s" with cwd="%s"', " ".join(subprocess_cmd), self.venv_folder
+        )
         subprocess.run(subprocess_cmd, cwd=self.venv_folder)
+        return project_name
 
     def __venv_exists(self, project_name):
         return (self.venv_folder / project_name).exists()
