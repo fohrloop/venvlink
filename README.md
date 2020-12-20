@@ -2,16 +2,16 @@
 
 # 🔗 venvlink
 
-
 The aim of `venvlink` is simply to create the virtual environment outside of the project folder, to a centralized location, but *feel like* you would be using  `python -m venv venv` and `./venv/Scripts/activate`. 
 
 ## Without venvlink
 This is how work with virtual environments looks like with `python -m venv venv`:
 
-![](docs/without-venvlink.png)
+![](https://github.com/np-8/venvlink/blob/master/docs/without-venvlink.png?raw=true)
+
 ## With venvlink
 With `venvlink` the virtual environment is created in a centralized folder, and only a proxy ("link") of the `activate` script is created to the project folder:
-![](docs/with-venvlink.png)
+![](https://github.com/np-8/venvlink/blob/master/docs/with-venvlink.png?raw=true)
 
 ## Motivation
 The reason for one using venvlink might be one or multiple from below.
@@ -39,11 +39,11 @@ The `activate` script in your project folder is just a proxy ("link") for the re
 
 
 ### 🗑️🤝 remove anytime
-The `venvlink` philosophy is that a tool should not chain it's user. You can remove it anytime and *your virtual environments and activate proxy scripts will still work*.
+The `venvlink` philosophy is that a tool should not chain it's user. You can remove it anytime and your virtual environments and activate proxy scripts will still work. Venvlink is only used for creation of virtual environments.
 
 
 ### 💼✔️ works with an existing venv collection
-If you happen to have already a collection of virtual environments inside one folder, you can start using them with `venvlink` right away. 
+If you happen to have already a collection of virtual environments inside one folder, you can start using them with `venvlink` right away. Just configure the `venv_folder` in the `.venvlinkrc`, and you're good to go.
 
 
 ### 🐍🐍 multipython
@@ -60,7 +60,7 @@ Therefore, you can use `venvlink` on `Python 3.6.4 32-bit` and `Python 3.9.2 64-
 <path_to_another_python_exe> -m pip install venvlink
 ```
 
-and the rest you can use normally. Note that virtual environments in the centralized folder will have the same python version which was used to create the virtual environment in the first place. **Note**: Knowing which python version is used in which virtual environment in reponsibilities of the user (use wise venv names, if needed).
+and the rest you can use normally. Note that virtual environments in the centralized folder will have the same python version which was used to create the virtual environment in the first place. You can later on use your main python executable to create more links for an existing virtual environment, no matter what version of python it is using. Use descriptive venv names to distinguish the venvs with different python versions, if needed.
 
 ### 🚫🔮 no magic
 
@@ -210,9 +210,9 @@ and it is also easy to browse the venvs when they are after a short path.
 ## Contributing
 
 
-| What?                                | How?                                                                                     |
-| :----------------------------------- | :--------------------------------------------------------------------------------------- |
-| 🐞 Found a bug?                       | 🎟 <a href="https://github.com/np-8/venvlink/issues">File an Issue</a>                    |
-| 🙋‍♂️ Need help?                         | ❔  <a href="https://stackoverflow.com/questions/ask">Ask a question on StackOverflow</a> |
-| 💡  Want to submit a feature request? | <a href="https://github.com/np-8/venvlink/issues">🎫 File an Issue (feature request)</a>  |
-| 🧙  Want to write code?               | 🔥 <a href="./docs/CONTRIBUTING.md">Here's how you get started!</a>                       |
+| What?                  | How?                                                                                     |
+| :--------------------- | :--------------------------------------------------------------------------------------- |
+| 🐞 Found a bug?         | 🎟 <a href="https://github.com/np-8/venvlink/issues">File an Issue</a>                    |
+| 🙋‍♂️ Need help?           | ❔  <a href="https://stackoverflow.com/questions/ask">Ask a question on StackOverflow</a> |
+| 💡 Got a suggestion?    | <a href="https://github.com/np-8/venvlink/issues">🎫 File an Issue (feature request)</a>  |
+| 🧙  Want to write code? | 🔥 <a href="./docs/CONTRIBUTING.md">Here's how you get started!</a>                       |
