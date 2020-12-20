@@ -103,22 +103,19 @@ Assume that you have a project at
 ```
 C:\workdir\someproject\
 ```
-and that you are in command line inside that folder (call it, `<project_root>`). Then, you would like to create virtual environment for that folder.
-
+and you would like to create virtual environment for that folder. 
 Instead of the regular
 ```python
-# at C:\workdir\someproject\
-python -m venv venv
+PS C:\workdir\someproject> python -m venv venv
 ```
 
-One would type
+using `venvlink` one would type
 
 ```python
-# at C:\workdir\someproject\
-python -m venvlink project-name
+PS C:\workdir\someproject> python -m venvlink project-name
 ```
 
-This would create the following folders:
+This would create the following folders & files:
 
 ```
 C:\workdir\someproject\venv
@@ -128,7 +125,7 @@ C:\<venvlink-venv-path>\project-name
    ^--- The actual virtual environment files are here!
 ```
 
-The first folder is for using the virtual environment normally, just like you have used to (running `venv/Scripts/activate`) and the second folder is for storing the actual virtual environment files.
+The first folder is for using the virtual environment normally, just like you have used to (running `.\venv\Scripts\activate`) and the second folder is for storing the actual virtual environment files.
 
 ## 📖❔ Getting help
 You can use  the `-h` flag:
