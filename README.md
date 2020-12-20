@@ -1,4 +1,4 @@
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/np-8/venvlink)&nbsp;![PyPI](https://img.shields.io/pypi/v/venvlink)&nbsp;![PyPI - Downloads](https://img.shields.io/pypi/dm/venvlink)&nbsp;![GitHub](https://img.shields.io/github/license/np-8/venvlink)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/np-8/venvlink)&nbsp;![PyPI](https://img.shields.io/pypi/v/venvlink)&nbsp;[![Downloads](https://pepy.tech/badge/venvlink)](https://pepy.tech/project/venvlink)&nbsp;![GitHub](https://img.shields.io/github/license/np-8/venvlink)
 
 # 🔗 venvlink
 
