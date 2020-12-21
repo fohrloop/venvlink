@@ -2,7 +2,7 @@
 
 # 🔗 venvlink
 
-The aim of `venvlink` is simply to create the virtual environment outside of the project folder, to a centralized location, but *feel like* you would be using  `python -m venv venv` and `./venv/Scripts/activate`. 
+The job of `venvlink` is to create a virtual environment outside your project folder, using  `python -m venv` and create a *link* for the  `./venv/Scripts/activate` script inside the project folder.
 
 ## Without venvlink
 This is how work with virtual environments looks like with `python -m venv venv`:
