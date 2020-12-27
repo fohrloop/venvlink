@@ -7,7 +7,7 @@ Here is a list of different tools and how they relate to `venvlink`.
 **Usage**: Click the image below to see the svg file (zoomable, with links)
 
 
-[![](tools.svg)](https://github.com/np-8/python-environment-management/raw/master/src/tools.svg)
+[![](tools.svg)](https://github.com/np-8/python-environment-management/raw/master/src/tools-plain.svg)
 
 ## Anaconda / Miniconda 
 - The [Anaconda](https://www.anaconda.com/) is a python distribution that is focused on scientific computing / Data Science, and comes with preinstalled packages. 
