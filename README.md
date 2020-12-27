@@ -2,8 +2,25 @@
 
 # 🔗 venvlink
 
-The job of `venvlink` is to create a virtual environment outside your project folder, using  `python -m venv` and create a *link* for the  `./venv/Scripts/activate` script inside the project folder.
+The job of `venvlink` is create a *link* for the  `./venv/Scripts/activate` script inside the project folder and, if needed, create a virtual environment outside your project folder, using  `python -m venv <project_name>`.
 
+## Table of Contents
+- [Without venvlink](#without-venvlink)
+- [With venvlink](#with-venvlink)
+- [Motivation](#motivation)
+- [Installing](#installing)
+  - [Requirements](#requirements)
+  - [Installation with pip](#installation-with-pip)
+- [Getting started](#getting-started)
+  - [Creating a virtual environment](#-creating-a-virtual-environment)
+  - [Getting help](#-getting-help)
+  - [Removing virtual environments](#️-removing-virtual-environments)
+  - [Configuration](#️-configuration)
+- [Considerations](#considerations)
+    - [Special cases](#-special-cases)
+    - [File structure tip](#-file-structure-tip)
+- [Venvlink and other tools](#-venvlink-and-other-tools)
+- [Contributing](#contributing)
 ## Without venvlink
 This is how work with virtual environments looks like with `python -m venv venv`:
 
@@ -25,7 +42,7 @@ If you want to centralize your virtual environments just because you think it is
 If you want to reuse some of your virtual environments in multiple projects (sharing same imports) or want to use a general `(tmp)` virtual environment for all of your one-off testing, for example.
 
 ### 🏗️✔️relocating projects
-If you want to be able to relocate projects on hard disk (on same machine) by just copy-pasting them, even with virtual environments. 
+If you want to be able to relocate projects on hard disk (on same machine) by just copy-pasting them, even with virtual environments. Or, if you want to be able rename a part of the project path without breaking the virtual environment.
 
 ### 🔑🎯 centralized, but with an `activate` script
 
@@ -86,13 +103,6 @@ pip install venvlink
 
 
 
-## 🛠️ Initializing configure file
-
-To create the initial `.venvlinkrc` file, use command
-
-```
-python -m venvlink --init
-```
 
 
 
@@ -202,22 +212,9 @@ All what this does is recreates the proxy and, if anothervenv does not exist, cr
 
 
 ## 🛠️ Configuration
-### Location of `.venvlinkrc`
-The configuration file, `.venvlinkrc` should be located at 
-```
-%USERPROFILE%\.venvlinkrc
-```
-which usually translates into  `C:\Users\USER\.venvlinkrc`. 
 
-### Contents of `.venvlinkrc`
-Here is an example default config (copy-paste):
+See: [Configuration](docs\configuration.md).
 
-```
-[general]
-venv_folder = C:\Users\USER\venvs
-```
-**[general]: venv_folder** <br>
-This is the folder where all the virtual environment are stored, in subfolders. 
 
 ## Considerations
 
@@ -241,6 +238,13 @@ C:\Python\Python386\python.exe -m venvlink myproj
 ```
 and it is also easy to browse the venvs when they are after a short path.
 
+## 🍎🍌 venvlink and other tools
+These tools work well together and have synergies with `venlink`:
+- [venvlink and pyenv-win](docs\venvlink-and-pyenv-win.md)
+- [venvlink and pew](docs\venvlink-and-pew.md)
+  
+Other tools and how they relate to `venvlink`: 
+- [Python environment management tools](docs\python-virtual-environments.md)
 ## Contributing
 
 
