@@ -213,7 +213,7 @@ All what this does is recreates the proxy and, if anothervenv does not exist, cr
 
 ## 🛠️ Configuration
 
-See: [Configuration](docs\configuration.md).
+See: [Configuration](docs/configuration.md).
 
 
 ## Considerations
@@ -240,11 +240,11 @@ and it is also easy to browse the venvs when they are after a short path.
 
 ## 🍎🍌 venvlink and other tools
 These tools work well together and have synergies with `venlink`:
-- [venvlink and pyenv-win](docs\venvlink-and-pyenv-win.md)
-- [venvlink and pew](docs\venvlink-and-pew.md)
+- [venvlink and pyenv-win](docs/venvlink-and-pyenv-win.md)
+- [venvlink and pew](docs/venvlink-and-pew.md)
   
 Other tools and how they relate to `venvlink`: 
-- [Python environment management tools](docs\python-virtual-environments.md)
+- [Python environment management tools](docs/python-virtual-environments.md)
 ## Contributing
 
 
