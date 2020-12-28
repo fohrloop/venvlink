@@ -2,7 +2,7 @@
 Here is a list of different tools and how they relate to `venvlink`.
 
 
-**Usage**: Click the image below to see the svg file (zoomable, with links). For some reason, the text for the `venv` is missing.
+**Usage**: Click the image below to see the svg file (zoomable, with links). 
 
 
 [![](tools-plain.svg)](https://raw.githubusercontent.com/np-8/venvlink/master/docs/tools-plain.svg)
