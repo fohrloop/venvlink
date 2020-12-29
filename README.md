@@ -81,7 +81,9 @@ and the rest you can use normally. Note that virtual environments in the central
 
 ### ✨🔥 auto-activate
 
-The `venvlink` supports a Powershell addon called [venvlink-autoenv](https://github.com/np-8/venvlink-autoenv-powershell) which will automatically activate/deactivate the virtual environment on Windows Powershell! *(New in version 0.5.0)*
+The `venvlink` supports a Powershell addon called [venvlink-autoenv](https://github.com/np-8/venvlink-autoenv-powershell) which will automatically activate/deactivate the virtual environment on Windows Powershell! (Works also with example [VS Code Integrated Terminal](https://code.visualstudio.com/docs/editor/integrated-terminal), when Powershell is selected ) 
+<br>
+*New in version 0.5.0*
 
 <p align="center">
 <img src="docs/example-usage.gif" width="450">
@@ -240,8 +242,9 @@ and it is also easy to browse the venvs when they are after a short path.
 
 ## 🍎🍌 venvlink and other tools
 These tools work well together and have synergies with `venlink`:
-- [venvlink and pyenv-win](docs/venvlink-and-pyenv-win.md)
-- [venvlink and pew](docs/venvlink-and-pew.md)
+- [venvlink-autoenv](https://github.com/np-8/venvlink-autoenv-powershell): The Powershell addon for venvlink >= 0.5.0.
+- [pyenv-win](docs/venvlink-and-pyenv-win.md): Python version management/switcher
+- [pew](docs/venvlink-and-pew.md): Virtual environment management 
   
 Other tools and how they relate to `venvlink`: 
 - [Python environment management tools](docs/python-virtual-environments.md)
