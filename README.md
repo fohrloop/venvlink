@@ -79,13 +79,13 @@ Therefore, you can use `venvlink` on `Python 3.6.4 32-bit` and `Python 3.9.2 64-
 
 and the rest you can use normally. Note that virtual environments in the centralized folder will have the same python version which was used to create the virtual environment in the first place. You can later on use your main python executable to create more links for an existing virtual environment, no matter what version of python it is using. Use descriptive venv names to distinguish the venvs with different python versions, if needed.
 
-### 🚫🔮 no magic
+### ✨🔥 auto-activate
 
-`venvlink` is a really simple tool. All it does is
-- Runs `python -m venv projname`, inside the centralized venv folder
-- Creates `activate` scripts inside your project dir, that act as proxies ("links") for the real activate scripts.
+The `venvlink` supports a Powershell addon called [venvlink-autoenv](https://github.com/np-8/venvlink-autoenv-powershell) which will automatically activate/deactivate the virtual environment on Windows Powershell! *(New in version 0.5.0)*
 
-In addition there are some convenience scripts, for removing a venv or overwriting a proxy activate script. But that's about it. 
+<p align="center">
+<img src="docs/example-usage.gif" width="450">
+</p>
 
 # Installing
 ### Requirements

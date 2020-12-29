@@ -6,7 +6,8 @@ from venvlink import VenvLink
 from venvlink.config import init_config
 from venvlink.__version__ import __version__
 
-parser = argparse.ArgumentParser(prog="venvlink", description=f"venvlink {__version__}")
+parser = argparse.ArgumentParser(prog="venvlink",
+                                 description=f"venvlink {__version__}")
 
 parser.add_argument(
     "--init",
@@ -18,7 +19,8 @@ parser.add_argument(
 parser.add_argument(
     "-d",
     "--delete",
-    help="Delete the virtual environment associated with project_name (instead of creating)",
+    help=
+    "Delete the virtual environment associated with project_name (instead of creating)",
     action="store_true",
     default=False,
 )
