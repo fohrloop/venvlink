@@ -96,3 +96,4 @@ Type "help", "copyright", "credits" or "license" for more information.
 - When using `pew workon`, the virtual environment can be activated from anywhere using the ***name*** of the virtual environment. When using `venvlink`, the virtual environment can be activated using the ***`activate` script*** which is located the project folder (can also be called anywhere). 
 - When creating virtual environments, one must be in a project folder, to create a virtual environment with `venvlink`, but you can create virtual environment anywhere using `pew`. 
 - The activate script using `venvlink` will colorize the virtual environment name, if using Powershell.
+- `venvlink` (0.5.0+) has support for automatically activating and deactivating virtual environments in Powershell using [venvlink-autoenv](https://github.com/np-8/venvlink-autoenv-powershell).

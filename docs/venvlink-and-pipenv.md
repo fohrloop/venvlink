@@ -25,7 +25,7 @@
 - With `venvlink`, one would activate the virtual environment using the `activate` script ("link") located in the project folder. The cwd can be anything when the `activate` script is ran.
 - With `venvlink` it is also possible to run the python executable directly with `<venv_folder>/<venv_name>/Scipts/python.exe ...`, if needed (as with when using `venv` without `venvlink`)
 -  It is also possible to use [`pew` with venvlink](venvlink-and-pew.md). (and activate virtual environments using `pew workon myproject`)
-
+  - `venvlink` (0.5.0+) has support for automatically activating and deactivating virtual environments in Powershell using [venvlink-autoenv](https://github.com/np-8/venvlink-autoenv-powershell).
 
 ## Changing virtual environments
 
