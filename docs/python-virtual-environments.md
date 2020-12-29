@@ -2,9 +2,7 @@
 Here is a list of different tools and how they relate to `venvlink`.
 
 
-
-
-**Usage**: Click the image below to see the svg file (zoomable, with links)
+**Usage**: Click the image below to see the svg file (zoomable, with links). 
 
 
 [![](tools-plain.svg)](https://raw.githubusercontent.com/np-8/venvlink/master/docs/tools-plain.svg)
